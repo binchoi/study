@@ -132,6 +132,19 @@ func traverseKVsUsingForRangeLoops() {
 	}
 }
 
+func usingMapsToCount() {
+	freq := map[string]int{}
+	names := []string{"alpha", "beta", "delta", "gamma", "alpha", "alpha", "beta"}
+
+	for _, n := range names {
+		freq[n]++
+	}
+
+	for n, cnt := range freq {
+		fmt.Printf("The word %s appeared %d times\n", n, cnt)
+	}
+}
+
 func main() {
 	basicMapUsage()
 	usingMapLiterals()
@@ -144,4 +157,6 @@ func main() {
 	deletingKeyValues()
 
 	traverseKVsUsingForRangeLoops()
+
+	usingMapsToCount()
 }
