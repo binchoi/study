@@ -66,6 +66,13 @@ func (v Vector) DoAllSequential(u Vector) {
 	}
 }
 
+// CONCURRENCY != PARALLELISM
+// Concurrency: structuring a program as independently executing components
+// Parallelism: executing calculations in parallel for efficiency on multiple CPUs.
+
+// Although the concurrency features of Go can make some problems easy to structure as parallel computations,
+// Go is a concurrent language, not a parallel one, and not all parallelization problems fit Go's model.
+
 func main() {
 	rand.Seed(12345)
 	v := Vector{11, 12, 13, 14}
