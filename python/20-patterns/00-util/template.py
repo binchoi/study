@@ -9,37 +9,39 @@ import unittest
 
 
 class Solution:
+    # Time Complexity:  O(n)
+    # Space Complexity: O(n)
     def someQuestion(self, nums: List[int], k: int) -> bool:
         pass
 
 
 # Test
 class TestSolution(unittest.TestCase):
-    def mainTest(self):
+    def test_solution(self):
         @dataclass
-        class Args:  # TODO: change this
-            nums: List[int]
+        class Args:
+            nums: List[int]  # TODO: change this
             k: int
 
-        @dataclass   # TODO: change this
+        @dataclass
         class TestCase:
             name: str
             input: Args
-            expect: bool
+            expect: bool  # TODO: change this
 
-        cases = [    # TODO: write your test cases
+        cases = [
             TestCase(
                 name="test 1",
-                input=Args(nums=[1, 2, 3, 1], k=3),
+                input=Args(nums=[1, 2, 3, 1], k=3),  # TODO: write your test cases
                 expect=True
             ),
             TestCase(
-                name="test 1",
+                name="test 2",
                 input=Args(nums=[1, 0, 1, 1], k=1),
                 expect=True
             ),
             TestCase(
-                name="test 1",
+                name="test 3",
                 input=Args(nums=[1, 2, 3, 1, 2, 3], k=2),
                 expect=False
             )
@@ -55,3 +57,7 @@ class TestSolution(unittest.TestCase):
                 actual,
                 f"failed test {c.name} expected {c.expect}, actual {actual}"
             )
+
+
+if __name__ == '__main__':
+    unittest.main()
