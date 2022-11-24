@@ -55,7 +55,7 @@ class TestSolution(unittest.TestCase):
             self.assertEqual(
                 c.expect,
                 actual,
-                f"failed test {c.name} expected {c.expect}, actual {actual}"
+                f"failed {c.name} expected {c.expect}, actual {actual}"
             )
 
 

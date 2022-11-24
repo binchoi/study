@@ -42,6 +42,7 @@ class Solution:
         while len(coord_queue) > 0:
             curr_coord = coord_queue.pop()
             x, y = curr_coord[0], curr_coord[1]
+            print(f"Found island in coord: {x}, {y}")
             island_map[y][x] = 1  # this land is found
 
             # check land around (x, y)
@@ -99,7 +100,7 @@ class TestSolution(unittest.TestCase):
             self.assertEqual(
                 c.expect,
                 actual,
-                f"failed test {c.name} expected {c.expect}, actual {actual}"
+                f"failed {c.name} expected {c.expect}, actual {actual}"
             )
 
 
