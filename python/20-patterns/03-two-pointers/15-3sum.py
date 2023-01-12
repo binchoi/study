@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Optional
 import unittest
 
 
-# https://leetcode.com/problems/contains-duplicate-ii/
+# https://leetcode.com/problems/3sum/
 
 # Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k,
 # and j != k, and nums[i] + nums[j] + nums[k] == 0.
@@ -15,7 +15,39 @@ class Solution:
     # Time Complexity:  O(n)
     # Space Complexity: O(n)
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        pass
+        res = []
+
+        # sort nums
+        nums.sort()
+
+        # set left and right pointer
+        left, right = 0, len(nums)-1
+        if nums[left] + nums[right] > 0:
+            self.scanAscending(nums, left, right)
+
+        return res
+
+    def scanAscending(self, sorted_nums: List[int], left: int, right: int) -> Optional[List[int]]:
+        middle = left + 1
+        while middle < right:
+            total = sorted_nums[left] + sorted_nums[middle] + sorted_nums[right]
+            if total > 0:
+                return None
+            if total == 0:
+                return [sorted_nums[left], sorted_nums[middle], sorted_nums[right]]
+            middle += 1
+        return None
+
+    def scanDescending(self, sorted_nums: List[int], left: int, right: int) -> Optional[List[int]]:
+        middle = right - 1
+        while left < middle:
+            total = sorted_nums[left] + sorted_nums[middle] + sorted_nums[right]
+            if total < 0:
+                return None
+            if total == 0:
+                return [sorted_nums[left], sorted_nums[middle], sorted_nums[right]]
+            middle -= 1
+        return None
 
 
 # Test
