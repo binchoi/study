@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -15,13 +16,13 @@ type Page struct {
 
 // save takes care of persistent storage
 func (p *Page) save() error {
-	filename := p.Title + ".txt"
+	filename := fmt.Sprintf("data/%s.txt", p.Title)
 	// permission 0600: file should be created with read-write permissions for the current user only
 	return os.WriteFile(filename, p.Body, 0600)
 }
 
 func loadPage(title string) (*Page, error) {
-	filename := title + ".txt"
+	filename := fmt.Sprintf("data/%s.txt", title)
 	body, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
@@ -59,10 +60,10 @@ func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
 
 // use http/template [native support by Go]
 // template.Must wrapper causes panic when non-nil err returned
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+var templates = template.Must(template.ParseFiles("tmpl/edit.html", "tmpl/view.html")) // tmpl path required
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
-	err := templates.ExecuteTemplate(w, tmpl+".html", p)
+	err := templates.ExecuteTemplate(w, fmt.Sprintf("%s.html", tmpl), p) // just name of tmpl suffices
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError) // sends error message and specified response code
 	}
@@ -85,7 +86,13 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 	}
 }
 
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "/view/FrontPage", http.StatusFound)
+	return
+}
+
 func main() {
+	http.HandleFunc("/", rootHandler)                   // handle all requests to web root ("/view/") with handler
 	http.HandleFunc("/view/", makeHandler(viewHandler)) // handle all requests to web root ("/view/") with handler
 	http.HandleFunc("/edit/", makeHandler(editHandler)) // handle all requests to web root ("/edit/") with handler
 	http.HandleFunc("/save/", makeHandler(saveHandler)) // handle all requests to web root ("/save/") with handler
