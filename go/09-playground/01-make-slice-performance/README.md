@@ -47,11 +47,15 @@ Before raising this to my colleague/manager, I decided to run benchmark performa
 
 ## Result
 
+|      |   AppendToZeroCapacity (ns/op) |   AppendToNCapacity (ns/op) |   FillNLengthSlice (ns/op) |
+|-----:|-------------------------------:|----------------------------:|---------------------------:|
+|    1 |                          13.77 |                       9.159 |                      9.136 |
+|   10 |                         101.3  |                      23.46  |                     22.19  |
+|  100 |                         347.3  |                     126.6   |                    126.5   |
+|  500 |                        1032    |                     578.8   |                    548.6   |
+| 1000 |                        2171    |                    1058     |                   1045     |
 
-|             | A           | B           |
-| ----------- | ----------- | ----------- |
-| Header      | 0           | 0           |
-| Paragraph   | 0           | 0           |
+See line graph visualization [here](performance-test-results-visualized.ipynb).
 
 ## Outcome
 
