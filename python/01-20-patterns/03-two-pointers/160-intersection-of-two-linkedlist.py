@@ -1,5 +1,4 @@
-from dataclasses import dataclass
-from typing import List, Optional
+from typing import Optional
 import unittest
 
 # https://leetcode.com/problems/intersection-of-two-linked-lists/
