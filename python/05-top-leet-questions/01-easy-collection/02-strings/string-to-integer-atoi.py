@@ -34,6 +34,8 @@ class Solution:
     INT32_MAX = 2 ** 31 - 1
     INT32_MIN = -(2 ** 31)
 
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)
     def myAtoi(self, s: str) -> int:
         state = 0  # DFA
         pos, res, sign = 0, 0, 1
@@ -66,6 +68,7 @@ class Solution:
             elif state == 2:
                 if str.isdigit(s[pos]):
                     if sign == -1:
+                        # Note that FLOOR DIVISION & MODULO behave differently for positive and negative integers
                         res_threshold = abs(self.INT32_MIN) // 10
                         if res < res_threshold or (res == res_threshold and int(s[pos]) <= abs(self.INT32_MIN) % 10):
                             res = res * 10 + int(s[pos])
@@ -97,7 +100,7 @@ class Solution:
 
             # step 2
             sign = 1
-            if s[pointer.val] in set(("-", "+")):
+            if s[pointer.val] in {"-", "+"}:
                 if s[pointer.val] == "-":
                     sign = -1
                 pointer.increment()
