@@ -1,4 +1,6 @@
 from typing import Optional
+from util import ListNode, print_linked_list, create_linked_list
+
 
 # Given the head of a singly linked list, reverse the list, and return the reversed list.
 
@@ -8,10 +10,6 @@ from typing import Optional
 
 # Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
 
 class Solution:
     # Time Complexity: O(n)
@@ -68,19 +66,8 @@ class Solution:
         return res
 
 
-def print_linked_list(head: ListNode):
-    while head.next is not None:
-        print(f"{head.val} -> ", end="")
-        head = head.next
-    print(head.val)
-
-
 if __name__ == "__main__":
-    test_head = ListNode(1)
-    prev = test_head
-    for i in range(2, 6):
-        prev.next = ListNode(i)
-        prev = prev.next
+    test_head = create_linked_list(1, 6, 1, -1)
 
     print_linked_list(test_head)
 
@@ -88,4 +75,3 @@ if __name__ == "__main__":
     res = sol.reverseListRecursive(test_head)
 
     print_linked_list(res)
-

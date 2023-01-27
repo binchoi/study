@@ -59,14 +59,20 @@ See line graph visualization [here](performance-test-results-visualized.ipynb).
 
 ## Outcome
 
-When these findings were shared and the appropriate optimizations were applied to our projects, there was visible increase in performance. Some services, such as one that is responsible for providing remote configurations for SDKs, experienced upto ~10% decrease in latency (p50) in its primary API.
+When these findings were shared and the appropriate optimizations were applied to our projects, there was visible 
+increase in performance. Some services, such as one that is responsible for providing remote configurations for SDKs, 
+experienced upto a **10% decrease in latency** (p50) of one of their core APIs.
 
 
 ---
 
 #### fyi. Go's `append` under the hood
 
-When the capacity of a slice is exceeded and the built-in `append` function is used to add an element to the slice, Go dynamically allocates a new, larger underlying array to hold the slice's elements. The elements from the original slice are then copied to the new array, and the new element is added to the end of the new array. The slice's internal pointers are then updated to point to the new array, and the original array is garbage collected. This process is known as a "grow" and it can cause a performance hit as it has to copy all elements over to new memory location.
+When the capacity of a slice is exceeded and the built-in `append` function is used to add an element to the slice, Go 
+dynamically allocates a new, larger underlying array to hold the slice's elements. The elements from the original slice 
+are then copied to the new array, and the new element is added to the end of the new array. The slice's internal 
+pointers are then updated to point to the new array, and the original array is garbage collected. This process is known 
+as a "grow" and it can cause a performance hit as it has to copy all elements over to new memory location.
 
 
 
