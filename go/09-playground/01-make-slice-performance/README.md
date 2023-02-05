@@ -59,9 +59,9 @@ See line graph visualization [here](performance-test-results-visualized.ipynb).
 
 ## Outcome
 
-When these findings were shared and the appropriate optimizations were applied to our projects, there was visible 
-increase in performance. Some services, such as one that is responsible for providing remote configurations for SDKs, 
-experienced upto a **10% decrease in latency** (p50) of one of their core APIs.
+When these findings were shared and the appropriate optimizations were applied to our projects (in tandem with other optimizations), 
+there was visible increase in performance. Some services, such as one that is responsible for providing remote configurations for SDKs, 
+experienced upto a **20% decrease in latency** (p50) in one of their core APIs.
 
 
 ---
