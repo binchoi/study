@@ -55,7 +55,7 @@ class Solution:
             cand.pop()
 
     # Time Complexity: O(4^n) where n = len(digits)
-    # Space Complexity: O(n) (excluding call stack) to keep a buffer of maximum n items (for cand strings)
+    # Space Complexity: O(4^n)
     def letterCombinationsHelperIterative(self, digits: str) -> List[str]:
         res = []
         if not digits:
