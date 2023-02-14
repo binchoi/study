@@ -43,7 +43,7 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
         i, curr, j = 0, 0, len(nums) - 1
-        while curr <= j:
+        while curr <= j:  # no need to have one pointer that increments every iteration!
             if nums[curr] == 2:
                 nums[curr], nums[j] = nums[j], nums[curr]
                 j -= 1
