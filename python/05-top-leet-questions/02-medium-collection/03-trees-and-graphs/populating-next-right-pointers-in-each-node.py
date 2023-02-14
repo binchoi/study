@@ -1,5 +1,6 @@
+from collections import deque
 from typing import Optional
-from util import build_tree, print_tree
+from util import build_tree, print_tree, Node
 
 
 # You are given a perfect binary tree where all leaves are on the same level, and every parent has two children.
@@ -26,15 +27,55 @@ from util import build_tree, print_tree
 
 
 class Solution:
-    # Time Complexity:
-    # Space Complexity:
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)  # number of nodes in the leaf level
     def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        pass
+        if not root:
+            return root
+
+        dq = deque([root])
+        while len(dq) > 0:
+            prev = None
+            for i in range(len(dq)):
+                node = dq.popleft()
+                if prev:
+                    prev.next = node
+                prev = node
+
+                if node.left:
+                    dq.append(node.left)
+                if node.right:
+                    dq.append(node.right)
+        return root
+
+    # Time Complexity: O(n)
+    # Space Complexity: O(1)  [excluding implicit call stack]
+    def connectDFSRecursion(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        curr, nxt = root, None
+        self.dfs(root, None)
+        return root
+
+    def dfs(self, curr: 'Optional[Node]', nxt: 'Optional[Node]'):
+        if not curr:
+            return
+        curr.next = nxt
+        self.dfs(curr.left, curr.right)
+        self.dfs(curr.right, nxt.left if nxt else None)
+
+    # Time Complexity: > O(n)
+    # Space Complexity: O(1)  [excluding implicit call stack]
+    def connectRecursive(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        if not root:
+            return root
+
+        left_child, right_child = self.connect(root.left), self.connect(root.right)
+        if left_child and right_child:
+            left_child.next = right_child
+            while left_child.right and right_child.left:
+                left_child.right.next = right_child.left
+                left_child, right_child = left_child.right, right_child.left
+        return root
 
 
 if __name__ == "__main__":
     sol = Solution()
-    t = build_tree(10)
-    print_tree(t)
-    # print(sol.connect(t))
-
