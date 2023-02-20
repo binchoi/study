@@ -55,11 +55,7 @@ class Solution:
             cand.pop()
 
     # Time Complexity: O(4^n) where n = len(digits)
-<<<<<<< Updated upstream
-    # Space Complexity: O(4^n)
-=======
     # Space Complexity: O(4^n) [geometric series; 1 + 4 + 16 + ... = a(1-r^n)/(1-r)]
->>>>>>> Stashed changes
     def letterCombinationsHelperIterative(self, digits: str) -> List[str]:
         res = []
         if not digits:
