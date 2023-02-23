@@ -4,7 +4,7 @@ from collections import Counter
 # different indices i < j, such that a[i] + a[j] is divisible by k.
 
 
-# Optimal
+# Optimal - TODO: investigate further
 def solution(a, k):
     count = 0
     freq = {}
