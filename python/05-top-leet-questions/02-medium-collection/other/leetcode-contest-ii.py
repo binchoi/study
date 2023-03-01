@@ -1,5 +1,6 @@
 from typing import List
 
+
 # 6361. Minimum Score by Changing Two Elements
 
 class Solution:
@@ -34,20 +35,30 @@ class Solution:
         return max(nums) - min(nums)
 
     def minimizeSum(self, nums: List[int]) -> int:
+        # 1 4 5 7 8
+        #     5 7 8
+        # 1 4 5
+        #   4 5 7
         if len(nums) < 4:
             return 0
         nums.sort()
-        case_one = nums[len(nums)-1] - nums[2]
-        case_two = nums[len(nums)-2] - nums[1]
-        case_thr = nums[len(nums)-3] - nums[0]
+        case_one = nums[len(nums) - 1] - nums[2]
+        case_two = nums[len(nums) - 2] - nums[1]
+        case_thr = nums[len(nums) - 3] - nums[0]
         return min(case_one, case_two, case_thr)
 
+    def minimizeSumRetry(self, nums: List[int]) -> int:
+        if len(nums) < 4:
+            return 0
+        nums.sort()
+        high = min(nums[-3] - nums[0], nums[-2] - nums[1], nums[-1] - nums[2])
+        return high
 
 
 if __name__ == "__main__":
     sol = Solution()
-    # print(sol.minimizeSum([1,4,3]))
-    # print(sol.minimizeSum([1,4,7,8,5]))
-    # print(sol.minimizeSum([31,25,72,79,74,65]))
-    print(sol.minimizeSumNaive([65,77,1,73,32,43]))
-    print(sol.minimizeSum([65,77,1,73,32,43]))
+    print(sol.minimizeSum([1, 4, 3]))
+    print(sol.minimizeSum([1, 4, 7, 8, 5]))
+    print(sol.minimizeSum([31, 25, 72, 79, 74, 65]))
+    print(sol.minimizeSumNaive([65, 77, 1, 73, 32, 43]))
+    print(sol.minimizeSum([65, 77, 1, 73, 32, 43]))
