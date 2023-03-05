@@ -34,3 +34,26 @@ def solution(a, k):
 
 def total_ribbons_of_fixed_size(a, size):
     return sum(l // size for l in a) if size > 0 else 10 ** 9
+
+
+def solution_two(a, k):
+    a.sort(reverse=True)
+    max_len = a[0]
+    min_len = a[k - 1] if k - 1 < len(a) else 1
+
+    while min_len < max_len:
+        mid_len = (max_len + min_len) // 2 + 1  # right bias
+        max_count = get_max_count(a, mid_len)
+        print(max_count)
+        if max_count >= k:
+            min_len = mid_len
+        else:
+            max_len = mid_len - 1
+    return min_len
+
+
+def get_max_count(a, l):
+    count = 0
+    for a_i in a:
+        count += a_i // l
+    return count

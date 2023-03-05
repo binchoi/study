@@ -29,7 +29,8 @@ def solution(numbers: List[int]) -> int:
 
     return res
 
-# todo: check
+
+# todo: check https://codesignal.com/blog/interview-prep/example-codesignal-questions/
 def solutionOptimal(numbers: List[int]) -> int:
     count = 0
 
