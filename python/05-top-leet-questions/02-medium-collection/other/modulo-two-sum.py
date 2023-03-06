@@ -4,6 +4,7 @@ from collections import defaultdict
 # You are given an array of integers a and an integer k. Your task is to calculate the number of ways to
 # pick two different indices i < j, such that a[i] + a[j] is divisible by k.
 
+
 def solution(a: List[int], k: int) -> int:
     m = defaultdict(int)
     res = 0
