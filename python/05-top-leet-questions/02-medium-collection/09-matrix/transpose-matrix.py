@@ -12,6 +12,9 @@ class Solution:
                 res[j][i] = matrix[i][j]
         return res
 
+    def transpose_simple(self, matrix: List[List[int]]) -> List[List[int]]:
+        return zip(*matrix)
+
 
 if __name__ == "__main__":
     sol = Solution()
