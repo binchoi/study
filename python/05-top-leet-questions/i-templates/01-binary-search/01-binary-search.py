@@ -33,7 +33,7 @@ def binary_search_equality(nums: List[int], target: int) -> int:
     return -1
 
 
-# left-most idx & where it should be (even if non-existent)
+# right-most idx & where it should be (even if non-existent)
 def binary_search_rightmost(nums: List[int], target: int) -> int:
     lo, hi = 0, len(nums)
     while lo < hi:
