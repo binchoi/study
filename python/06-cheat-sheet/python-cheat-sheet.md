@@ -1,3 +1,6 @@
+# Python Cheet Sheat
+e.g., built-in, collections, ...
+
 ```python
 # Variables are dynamicly typed
 n = 0
@@ -15,7 +18,6 @@ n, m, z = 0.125, "abc", False
 # Increment
 n = n + 1 # good
 n += 1    # good
-n++       # bad
 
 # None is null (absence of value)
 n = 4
@@ -291,6 +293,9 @@ mySet.add(2)
 print(mySet)
 print(len(mySet))
 
+# add list to set
+mySet.update([1,2,3,4,4])
+
 print(1 in mySet)
 print(2 in mySet)
 print(3 in mySet)
@@ -394,13 +399,16 @@ print((1, 2) in mySet)
 ```python
 import heapq
 
+# Time complexity: binary heap therefore O(log n) push and O(log n) pop
+# exception is heapify O(n)
+
 # under the hood are arrays
 minHeap = []
 heapq.heappush(minHeap, 3)
 heapq.heappush(minHeap, 2)
 heapq.heappush(minHeap, 4)
 
-# Min is always at index 0
+# Min is always at index 0 -> this doesn't mean the array is sorted! 
 print(minHeap[0])
 
 while len(minHeap):
@@ -419,7 +427,7 @@ print(-1 * maxHeap[0])
 while len(maxHeap):
     print(-1 * heapq.heappop(maxHeap))
 
-# Build heap from initial values
+# Build heap from initial values -> O(n)
 arr = [2, 1, 8, 4, 5]
 heapq.heapify(arr)
 while arr:
@@ -474,7 +482,11 @@ for k, v in s:
     d[k].append(v)
 
 sorted(d.items())
-[('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+# > [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+
+# lambda as default_factory argument
+d = defaultdict(lambda: "Not Present")
+d = defaultdict(lambda x: [x])
 ```
 
 ## Counter
@@ -487,7 +499,7 @@ for word in ['red', 'blue', 'red', 'green', 'blue', 'blue']:
     cnt[word] += 1
 
 cnt
-Counter({'blue': 3, 'red': 2, 'green': 1})
+# > Counter({'blue': 3, 'red': 2, 'green': 1})
 
 c = Counter()                           # a new, empty counter
 c = Counter('gallahad')                 # a new counter from an iterable
@@ -564,4 +576,18 @@ class MyClass:
 a = MyClass('a')
 sc = copy.copy(a)
 dc = copy.deepcopy(a)
+```
+
+## Cache
+Use `@cache` for simple memoization
+
+```python
+from functools import cache
+
+def maxSubArray(self, nums: List[int]) -> int:
+    @cache
+    def solve(i, must_pick):
+        if i >= len(nums): return 0 if must_pick else -inf
+        return max(nums[i] + solve(i+1, True), 0 if must_pick else solve(i+1, False))
+    return solve(0, False)
 ```
